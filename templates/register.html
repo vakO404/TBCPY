@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% include "navbar.html" %}
+
+
+{% block content %}
+    <div class = "container bg-white h-100">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                         <ul class="flashes">
+                             <div class="alert alert-danger" role="alert">
+                             {% for category, message in messages %}
+                                <li class="{{ category }}">{{ message }}</li>
+                            {% endfor %}
+                             </div>
+                         </ul>
+                    {% endif %}
+                {% endwith %}
+
+        <form method="POST" class="p-5">
+            {{ form.hidden_tag()}}
+            <div class="row">
+                {{ form.email(class = "form-control my-2", placeholder=form.email.label.text)}}
+            </div>
+            <div class="row">
+                {{ form.username(class = "form-control my-2", placeholder=form.username.label.text)}}
+            </div>
+            <div class="row">
+                {{ form.password(class = "form-control my-2", placeholder=form.password.label.text)}}
+            </div>
+            <div class="row">
+                {{ form.repeat_password(class = "form-control my-2", placeholder=form.repeat_password.label.text)}}
+            </div>
+            <div class="row">
+                {{ form.register(class = "btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

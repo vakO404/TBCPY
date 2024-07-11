@@ -1,0 +1,27 @@
+{% include "navbar.html" %}
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-2 py-3 bg-white shadow-lg">
+    <div class="row">
+        {% for delivery_user in delivery_users %}
+            <div class = "col">
+                <div class = "card">
+                    <div class = "card-body">
+                        <p class="card-text">Name : {{ delivery_user["name"]}}</p>
+                        <p class="card-text">Lastname : {{ delivery_user["lastname"]}}</p>
+                        <p class="card-text">Phone : {{ delivery_user["phone_number"]}}</p>
+                        <p class="card-text">Country : {{ delivery_user["country"]}}</p>
+                        <p class="card-text">City : {{ delivery_user["city"]}}</p>
+                        <p class="card-text">Address : {{ delivery_user["address"]}}</p>
+                        <p class="card-text">Post Code : {{ delivery_user["post_code"]}}</p>
+                        <a class="btn btn-danger" href="/delete_user/{{ delivery_user['id'] }}">Cancel</a>
+                        <a class="btn btn-success" href="/delete_user/{{ delivery_user['id'] }}">Delivery</a>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

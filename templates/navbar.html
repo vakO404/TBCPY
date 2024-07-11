@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-expand-lg bg-body-"navbar style="background-color: #03AED2;">
+  <a class="navbar-brand mx-2" href="https://www.tbceducation.ge/" target="_blank">
+      <img src="{{ url_for('static', filename='images/tbc-logo.png') }}" width="50" height="50" class="d-inline-block align-top" alt="Logo">
+  </a>
+  <div class="container-fluid">
+        <a class="navbar-brand" href="/">Magic</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5 ">
+
+                {% if current_user.is_authenticated %}
+
+                    <li class="nav-item ">
+                        <a href="/cart" class="btn btn-outline-success mx-3 my-2">Cart</a>
+                    </li>
+                    {% if current_user.is_admin %}
+                        <li class="nav-item">
+                            <a href="/delivery_users" class="btn btn-outline-warning mx-1 my-2">Delivery's</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/register_users" class="btn btn-outline-warning mx-1 my-2">Manage Users</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a href="/logout" class="btn btn-outline-danger mx-5 my-2">Log Out</a>
+                    </li>
+                    <img src="{{ url_for('static', filename='images/user.png') }}" width="50" height="50" class="d-inline-block align-top mx-3" alt="Logo">
+
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light mx-2 my-2">{{ current_user.username }}</a>
+                    </li>
+
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/log_in">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                    </li>
+                {% endif %}
+
+    </div>
+  </div>
+</nav>
+

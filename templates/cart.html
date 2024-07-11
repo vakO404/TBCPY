@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% include "navbar.html" %}
+
+{% block content %}
+    <h1>Your Cart</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }} - ${{ product.price }} - Rating: {{ product.rating | default('No rating') }}
+
+                <form method="POST" action="{{ url_for('remove_from_cart', product_id=product.id) }}">
+                    {{ form.hidden_tag() }}
+                    {{ form.remove_from_cart() }}
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-outline-success my-3" href="/">Continue Shopping</a><br>
+    <h5>Total Price: ${{ total_price }}</h5>
+    <a class="btn btn-outline-success" href="/delivery">Delivery now</a>
+
+{% endblock %}

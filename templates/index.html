@@ -1,0 +1,36 @@
+{% include "navbar.html" %}
+{% extends "base.html" %}
+
+
+{% block content %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+
+<div class="row">
+        {% for product in new_products %}
+            <div class="col-md-3 mb-1">
+                <div class="card mb-4" style="width : 220px">
+                     <img src="{{ url_for('static', filename='images/' + product.image_url) }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class = "card-body">
+                        <h5 class="card-title"> {{ product["name"] }}</h5>
+                        <p class="card-text "> {{ product["price"]}} </p>
+                        <a class="btn btn-primary" href="/product/{{ product['id'] }}">View</a>
+                        {% if current_user.is_admin %}
+                            <a class="btn btn-danger" href="/delete_product/{{ product['id'] }}">delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+</div>
+{% endblock %}

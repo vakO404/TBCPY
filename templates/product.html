@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% include "navbar.html" %}
+
+
+{% block content %}
+
+<img class="w-25 p-3" src="{{ url_for('static', filename='images/' + product.image_url) }}" class="card-img-top" alt="{{ product.name }}">
+
+    <h1>{{ product.name }}</h1>
+    <p>Price: {{ product.price }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Average Rating: {{ product.rating }}</p>
+
+    <form method="POST" action="{{ url_for('product', product_id=product.id) }}">
+        {{ rating_form.hidden_tag() }}
+        {{ rating_form.product_id() }}
+        {{ rating_form.rating.label }} {{ rating_form.rating() }}
+        {{ rating_form.submit() }}
+    </form>
+
+    <form method="POST" action="{{ url_for('product', product_id=product.id) }}">
+        {{ cart_form.hidden_tag() }}
+        {{ cart_form.add_to_cart() }}
+    </form>
+
+    <a href="{{ url_for('index') }}">Back to Products</a>
+
+{% endblock %}

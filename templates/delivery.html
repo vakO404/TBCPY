@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% include "navbar.html" %}
+
+
+{% block content %}
+    <div class = "container bg-white h-100">
+        <form method="POST" class="p-5">
+            {{ form.hidden_tag()}}
+            <div class="row">
+                {{ form.email(class = "form-control my-2", placeholder=form.email.label.text)}}
+            </div>
+
+            <div class="row">
+                {{ form.name(class = "form-control my-2", placeholder=form.name.label.text)}}
+            </div>
+            <div class="row">
+                {{ form.lastname(class = "form-control my-2", placeholder=form.lastname.label.text)}}
+            </div>
+            <div class = "row">
+                {{form.phone_number(class = "form-control my-2", placeholder=form.phone_number.label.text)}}
+            </div>
+            <div class="row">
+                {{form.country(class = "form-select my-2") }}
+            </div>
+            <div class="row">
+                {{form.city(class = "form-control my-2", placeholder=form.city.label.text) }}
+            </div>
+            <div class="row">
+                {{form.address(class = "form-control my-2", placeholder=form.address.label.text) }}
+            </div>
+            <div class="row">
+                {{form.post_code(class="form-control my-2", placeholder=form.post_code.label.text) }}
+            </div>
+            <div class="row">
+                {{ form.delivery(class = "btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
